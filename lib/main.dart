@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:somasawa_app/pages/home/home_page.dart';
+import 'package:somasawa_app/pages/agenda/agenda_page.dart';
+import 'package:somasawa_app/pages/curriculum/curriculum_page.dart';
+import 'package:somasawa_app/pages/student/student_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,17 +59,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int currentPageIndex = 0;
+  final PageController _pageController = PageController();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -86,40 +86,48 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        children: const <Widget>[
+          HomePage(),
+          AgendaPage(),
+          CurriculumPage(),
+          StudentPage(),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeOut,
+          );
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.blue,
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.assignment),
+            label: 'Agenda',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.school),
+            label: 'Curriculum',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.account_circle),
+            label: 'Student',
+          ),
+        ],
+      ),
     );
   }
 }
