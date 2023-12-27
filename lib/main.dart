@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:somasawa_app/pages/home/home_page.dart';
 import 'package:somasawa_app/pages/agenda/agenda_page.dart';
-import 'package:somasawa_app/pages/curriculum/curriculum_page.dart';
+import 'package:somasawa_app/pages/curriculum/curriculum_page.dart'; //import the curriculum_page here so it can be used
 import 'package:somasawa_app/pages/student/student_page.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
