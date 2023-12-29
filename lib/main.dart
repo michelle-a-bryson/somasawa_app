@@ -5,6 +5,7 @@ import 'package:somasawa_app/pages/home/home_page.dart';
 import 'package:somasawa_app/pages/agenda/agenda_page.dart';
 import 'package:somasawa_app/pages/curriculum/curriculum_page.dart'; //import the curriculum_page here so it can be used
 import 'package:somasawa_app/pages/student/student_page.dart';
+import 'package:somasawa_app/styles/colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 void main() {
@@ -35,7 +36,19 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: neutralWhite,
+          onPrimary: primary500,
+          secondary: neutralBlack,
+          onSecondary: primary100,
+          error: error500,
+          onError: error100,
+          background: neutralWhite,
+          onBackground: neutralBlack,
+          surface: primary500,
+          onSurface: neutralBlack,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
