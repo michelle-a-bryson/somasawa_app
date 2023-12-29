@@ -3,6 +3,7 @@ import 'package:somasawa_app/pages/home/home_page.dart';
 import 'package:somasawa_app/pages/agenda/agenda_page.dart';
 import 'package:somasawa_app/pages/curriculum/curriculum_page.dart';
 import 'package:somasawa_app/pages/student/student_page.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,12 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: PageView(
@@ -106,24 +102,27 @@ class _MyHomePageState extends State<MyHomePage> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.blue,
+        indicatorColor: const Color(0xFF36CED9),
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Symbols.home_rounded, fill: 1),
+            icon: Icon(Symbols.home_rounded),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.assignment),
+            selectedIcon: Icon(Symbols.list_alt_rounded, fill: 1),
+            icon: Icon(Symbols.list_alt_rounded),
             label: 'Agenda',
           ),
           NavigationDestination(
-            icon: Icon(Icons.school),
+            selectedIcon: Icon(Symbols.book_5_rounded, fill: 1),
+            icon: Icon(Symbols.book_5_rounded),
             label: 'Curriculum',
           ),
           NavigationDestination(
-            icon: Icon(Icons.account_circle),
+            selectedIcon: Icon(Symbols.face_rounded, fill: 1),
+            icon: Icon(Symbols.face_rounded),
             label: 'Student',
           ),
         ],
