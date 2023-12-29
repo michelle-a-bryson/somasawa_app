@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:somasawa_app/constants/student_levels.dart';
+import 'package:somasawa_app/styles/colors.dart';
+import 'package:somasawa_app/styles/texts.dart';
 import 'package:somasawa_app/utilities/validators.dart';
 
 class ClassInfoForm extends StatefulWidget {
@@ -20,11 +22,21 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
-      child: Container(
-        padding: EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              "Add a Class Information",
+              style: headingH5Medium500,
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              "Input a class information assigned to you for upcoming term.",
+              style: paragraphMediumRegular400,
+            ),
+            SizedBox(height: 16.0),
             Row(
               children: [
                 // Dropdown for term
@@ -32,8 +44,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Class Info",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text("Term", style: paragraphSmallMedium500),
                       DropdownButtonFormField2<String>(
                         items: ["Term 1", "Term 2", "Term 3"]
                             .map((String value) => DropdownMenuItem<String>(
@@ -52,7 +63,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                             validateValueForm(value, 'Please select a term'),
                         dropdownStyleData: DropdownStyleData(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
@@ -64,7 +75,10 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 16),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: primary400),
                           ),
                         ),
                       ),
@@ -77,8 +91,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Year",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text("Year", style: paragraphSmallMedium500),
                       DropdownButtonFormField2<String>(
                         items: ["2023", "2024", "2025"]
                             .map((String value) => DropdownMenuItem<String>(
@@ -97,7 +110,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                             value, 'Please select a school year'),
                         dropdownStyleData: DropdownStyleData(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
@@ -109,7 +122,10 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 16),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: primary400),
                           ),
                         ),
                       ),
@@ -120,34 +136,56 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
             ),
             SizedBox(height: 16.0),
             // Date Picker for start date
-            // DropdownButton<DateTime>(
-            //   hint: Text('Choose A Date'),
-            //   items: ['Choose A Date']
-            //       .map((e) => DropdownMenuItem<DateTime>(
-            //             child: Text(e),
-            //             value:
-            //                 null, // You can set an initial value here if needed
-            //           ))
-            //       .toList(),
-            //   value: widget.formData['startDate'],
-            //   onChanged: (DateTime? value) {
-            //     showDatePicker(
-            //       context: context,
-            //       initialDate: widget.formData['startDate'] ?? DateTime.now(),
-            //       firstDate: DateTime(2001),
-            //       lastDate: DateTime(2099),
-            //     ).then((date) {
-            //       if (date != null) {
-            //         setState(() {
-            //           widget.formData['startDate'] = date;
-            //         });
-            //       }
-            //     });
-            //   },
-            // ),
+            Text("Start Date", style: paragraphSmallMedium500),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Select date",
+                suffixIcon: Icon(Icons.calendar_today),
+                contentPadding: const EdgeInsets.all(16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: primary400),
+                ),
+              ),
+              onTap: () async {
+                DateTime? date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2021),
+                  lastDate: DateTime(2025),
+                  builder: (context, child) => Theme(
+                    data: ThemeData().copyWith(
+                      colorScheme: ColorScheme.light(
+                        primary: primary500,
+                        onPrimary: Colors.white,
+                        surface: neutralWhite,
+                        onSurface: Colors.black,
+                      ),
+                      dialogBackgroundColor: Colors.white,
+                    ),
+                    child: child!,
+                  ),
+                );
+                if (date != null) {
+                  setState(() {
+                    widget.formData['startDate'] = date;
+                  });
+                }
+              },
+              validator: (value) =>
+                  validateValueForm(value, 'Please select a start date'),
+              readOnly: true,
+              controller: TextEditingController(
+                text: widget.formData['startDate'] == null
+                    ? ''
+                    : widget.formData['startDate'].toString().substring(0, 10),
+              ),
+            ),
             SizedBox(height: 16.0),
             // Dropdown for subject
-            Text("Subject", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Subject", style: paragraphSmallMedium500),
             DropdownButtonFormField2<String>(
               items: ["Math", "Literature"]
                   .map((String value) => DropdownMenuItem<String>(
@@ -167,12 +205,15 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                 });
               },
               value: widget.formData['subject'],
-              hint: Text("Select a Subject"),
+              hint: Text(
+                "Select a Subject",
+                style: paragraphMediumMedium500,
+              ),
               validator: (value) =>
                   validateValueForm(value, 'Please select a subject'),
               dropdownStyleData: DropdownStyleData(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
               menuItemStyleData: const MenuItemStyleData(
@@ -183,15 +224,19 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                 // the menu padding when button's width is not specified.
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: primary400),
                 ),
               ),
             ),
+            SizedBox(height: 4.0),
             Text(
               "*Tip: Remember to create separate classes for each subject, like one for Literacy and another for Numeracy.",
             ),
             SizedBox(height: 16.0),
-            Text("Class Time", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Class Time", style: paragraphSmallMedium500),
             DropdownButtonFormField2<String>(
               items: ["AM - Morning", "PM - Afternoon or Evening"]
                   .map((String value) => DropdownMenuItem<String>(
@@ -210,7 +255,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                   validateValueForm(value, 'Please select a class time'),
               dropdownStyleData: DropdownStyleData(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
               menuItemStyleData: const MenuItemStyleData(
@@ -221,7 +266,10 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                 // the menu padding when button's width is not specified.
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: primary400),
                 ),
               ),
             ),
@@ -247,7 +295,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                   validateValueForm(value, 'Please select a level'),
               dropdownStyleData: DropdownStyleData(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
               menuItemStyleData: const MenuItemStyleData(
@@ -258,7 +306,10 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                 // the menu padding when button's width is not specified.
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: primary400),
                 ),
               ),
             ),

@@ -36,15 +36,14 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
+        colorScheme: ColorScheme.light(
           primary: neutralWhite,
           onPrimary: primary500,
-          secondary: neutralBlack,
-          onSecondary: primary100,
+          // secondary: neutralBlack,
+          // onSecondary: primary500,
           error: error500,
           onError: error100,
-          background: neutralWhite,
+          background: neutral100,
           onBackground: neutralBlack,
           surface: primary500,
           onSurface: neutralBlack,
@@ -123,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         indicatorColor: const Color(0xFF36CED9),
+        backgroundColor: neutralWhite,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
