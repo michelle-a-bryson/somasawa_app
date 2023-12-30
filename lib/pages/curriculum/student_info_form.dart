@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:somasawa_app/styles/colors.dart';
+import 'package:somasawa_app/styles/texts.dart';
 
 class StudentForm extends StatefulWidget {
   final Map<String, dynamic> formData;
@@ -31,24 +33,35 @@ class _StudentFormState extends State<StudentForm> {
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
-      child: Container(
-        padding: EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Student"),
+            Text(
+              "Add students",
+              style: headingH5Medium500,
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              "Add students for the class by searching the student’s full name.",
+              style: paragraphMediumRegular400,
+            ),
             SizedBox(height: 16.0),
+            Text("Search student", style: paragraphSmallMedium500),
+            SizedBox(height: 4.0),
             // Search bar with dropdown for existing students
             TypeAheadField<String>(
                 controller: textController,
                 builder: (context, controller, focusNode) => TextField(
                       controller: controller,
                       focusNode: focusNode,
-                      autofocus: true,
+                      autofocus: false,
                       decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: "Search for existing students",
-                      ),
+                          prefixIcon: Icon(Icons.search),
+                          border: const OutlineInputBorder(),
+                          hintText: "Type student name",
+                          hintStyle: TextStyle(color: neutral400)),
                     ),
                 suggestionsCallback: (pattern) {
                   // Filter existing students based on the search pattern
@@ -61,6 +74,7 @@ class _StudentFormState extends State<StudentForm> {
                   // Display existing student suggestions
                   return ListTile(
                     title: Text(student),
+                    tileColor: Colors.white,
                   );
                 },
                 onSelected: (student) {
@@ -91,28 +105,59 @@ class _StudentFormState extends State<StudentForm> {
                     },
                   );
                 }),
-            SizedBox(height: 16.0),
-            // Container to display selected student names
-            Container(
-              height: 100.0, // Adjust the height as needed
-              child: ListView.builder(
-                itemCount: widget.formData['students'] == null
-                    ? 0
-                    : widget.formData['students'].length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(widget.formData['students'][index]),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        setState(() {
-                          widget.formData['students'].removeAt(index);
-                        });
-                      },
-                    ),
-                  );
-                },
+
+            if (widget.formData['students'] != null &&
+                widget.formData['students'].length > 0)
+              Column(
+                children: [
+                  SizedBox(height: 16.0),
+                  Text("${widget.formData['students'].length} students added",
+                      style: paragraphSmallMedium500),
+                  SizedBox(height: 16.0),
+                ],
               ),
+            if (widget.formData['students'] == null ||
+                widget.formData['students'].length == 0)
+              Column(
+                children: [
+                  SizedBox(height: 8.0),
+                  Text(
+                      "*Tip: You can skip this step for now and add students by editing class before planning daily agenda.",
+                      style: paragraphSmallRegular400),
+                ],
+              ),
+
+            // Container to display selected student names
+            Column(
+              children: widget.formData['students'] == null
+                  ? []
+                  : List<Widget>.from(
+                      widget.formData['students'].map((student) {
+                        int index =
+                            widget.formData['students'].indexOf(student);
+                        return Column(
+                          children: [
+                            Container(
+                              color: neutralWhite,
+                              child: ListTile(
+                                title: Text(student),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    setState(() {
+                                      widget.formData['students']
+                                          .removeAt(index);
+                                    });
+                                  },
+                                ),
+                                leading: const Icon(Icons.person),
+                              ),
+                            ),
+                            const SizedBox(height: 8.0),
+                          ],
+                        );
+                      }),
+                    ),
             ),
           ],
         ),

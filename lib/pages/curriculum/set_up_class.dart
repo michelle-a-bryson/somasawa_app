@@ -3,7 +3,9 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:somasawa_app/pages/curriculum/class_goal_form.dart';
 import 'package:somasawa_app/pages/curriculum/class_info_form.dart';
 import 'package:somasawa_app/pages/curriculum/confirm_set_up.dart';
+import 'package:somasawa_app/pages/curriculum/curriculum_page.dart';
 import 'package:somasawa_app/pages/curriculum/student_info_form.dart';
+import 'package:somasawa_app/pages/curriculum/success_set_up.dart';
 import 'package:somasawa_app/styles/colors.dart';
 
 List<GlobalKey<FormState>> formKeys = [
@@ -35,34 +37,28 @@ class _SetUpClassState extends State<SetUpClass> {
     }
   }
 
+  void _goToStep(int step) {
+    if (step >= 0 && step < 4) {
+      setState(() {
+        activeStep = step;
+      });
+    }
+  }
+
   void _goToNextStep() {
-    final form = formKeys[activeStep].currentState;
-    if (form != null && form.validate()) {
-      form.save();
-      if (activeStep < 3) {
+    if (activeStep == 3) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => CurriculumPage(),
+        ),
+      );
+    } else {
+      final form = formKeys[activeStep].currentState;
+      if (form != null && form.validate()) {
+        form.save();
         setState(() {
           activeStep++;
         });
-      } else {
-        // Handle final step actions
-        // For example, show a confirmation dialog or navigate to another screen
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Confirmation'),
-              content: Text('Form submitted successfully!'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
       }
     }
   }
@@ -73,7 +69,7 @@ class _SetUpClassState extends State<SetUpClass> {
       appBar: AppBar(
         title:
             const Text("Set up a class", style: TextStyle(color: Colors.white)),
-        backgroundColor: primary500,
+        // backgroundColor: primary500,
         iconTheme: IconThemeData(
           color: Colors.white, //change your color here
         ),
@@ -82,112 +78,129 @@ class _SetUpClassState extends State<SetUpClass> {
         key: _formKey,
         child: Container(
           color: neutral100,
+          padding: EdgeInsets.all(16),
           child: ListView(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: EasyStepper(
-                  // enableStepTapping: false,
-                  activeStep: activeStep,
-                  enableStepTapping: false,
-                  lineStyle: LineStyle(
-                    lineLength: 60,
-                    lineType: LineType.normal,
-                    lineThickness: 4,
-                    lineSpace: 0,
-                    lineWidth: 10,
-                    finishedLineColor: accent500Main,
-                    activeLineColor: primary50,
-                    unreachedLineColor: primary50,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: primary50,
+                      width: 1,
+                    ),
                   ),
-                  activeStepTextColor: primary500,
-                  finishedStepTextColor: Colors.black87,
-                  unreachedStepTextColor: Colors.black87,
-                  internalPadding: 0,
-                  showLoadingAnimation: false,
-                  stepRadius: 16,
-                  showStepBorder: false,
-                  activeStepBackgroundColor: accent500Main,
-                  finishedStepBackgroundColor: accent500Main,
-                  steps: [
-                    EasyStep(
-                      customStep: CircleAvatar(
-                        radius: 14,
-                        backgroundColor: backgroundColor(activeStep, 0),
-                        child: Text(
-                          "1",
-                          style: TextStyle(
-                            color: activeStep < 0 ? Colors.black : Colors.white,
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: EasyStepper(
+                    // enableStepTapping: false,
+                    activeStep: activeStep,
+                    enableStepTapping: false,
+                    lineStyle: LineStyle(
+                      lineLength: 60,
+                      lineType: LineType.normal,
+                      lineThickness: 4,
+                      lineSpace: 0,
+                      lineWidth: 10,
+                      finishedLineColor: accent500Main,
+                      activeLineColor: primary50,
+                      unreachedLineColor: primary50,
+                    ),
+                    activeStepTextColor: primary500,
+                    finishedStepTextColor: Colors.black87,
+                    unreachedStepTextColor: Colors.black87,
+                    internalPadding: 0,
+                    showLoadingAnimation: false,
+                    stepRadius: 16,
+                    showStepBorder: false,
+                    activeStepBackgroundColor: accent500Main,
+                    finishedStepBackgroundColor: accent500Main,
+                    steps: [
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: backgroundColor(activeStep, 0),
+                          child: Text(
+                            "1",
+                            style: TextStyle(
+                              color:
+                                  activeStep < 0 ? Colors.black : Colors.white,
+                            ),
                           ),
                         ),
+                        title: 'Class Info',
                       ),
-                      title: 'Class Info',
-                    ),
-                    EasyStep(
-                      customStep: CircleAvatar(
-                        radius: 14,
-                        backgroundColor: backgroundColor(activeStep, 1),
-                        child: Text(
-                          "2",
-                          style: TextStyle(
-                            color: activeStep < 1 ? Colors.black : Colors.white,
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: backgroundColor(activeStep, 1),
+                          child: Text(
+                            "2",
+                            style: TextStyle(
+                              color:
+                                  activeStep < 1 ? Colors.black : Colors.white,
+                            ),
                           ),
                         ),
+                        title: 'Student',
                       ),
-                      title: 'Student',
-                    ),
-                    EasyStep(
-                      customStep: CircleAvatar(
-                        radius: 14,
-                        backgroundColor: backgroundColor(activeStep, 2),
-                        child: Text(
-                          "3",
-                          style: TextStyle(
-                            color: activeStep < 2 ? Colors.black : Colors.white,
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: backgroundColor(activeStep, 2),
+                          child: Text(
+                            "3",
+                            style: TextStyle(
+                              color:
+                                  activeStep < 2 ? Colors.black : Colors.white,
+                            ),
                           ),
                         ),
+                        title: 'Goal',
                       ),
-                      title: 'Goal',
-                    ),
-                    EasyStep(
-                      customStep: CircleAvatar(
-                        radius: 14,
-                        backgroundColor: backgroundColor(activeStep, 3),
-                        child: Text(
-                          "4",
-                          style: TextStyle(
-                            color: activeStep < 3 ? Colors.black : Colors.white,
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: backgroundColor(activeStep, 3),
+                          child: Text(
+                            "4",
+                            style: TextStyle(
+                              color:
+                                  activeStep < 3 ? Colors.black : Colors.white,
+                            ),
                           ),
                         ),
+                        title: 'Set up',
                       ),
-                      title: 'Set up',
-                    ),
-                  ],
-                  onStepReached: (index) => setState(() => activeStep = index),
+                    ],
+                    onStepReached: (index) =>
+                        setState(() => activeStep = index),
+                  ),
                 ),
               ),
               displayStepForm(activeStep),
-              Positioned(
-                bottom: 16.0,
-                left: 0.0,
-                right: 0.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    if (activeStep > 0)
-                      ElevatedButton(
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  if (activeStep > 0)
+                    Expanded(
+                      child: ElevatedButton(
                         onPressed: _goToPreviousStep,
-                        child: Text("Back"),
+                        child:
+                            Text("Back", style: TextStyle(color: Colors.white)),
                       ),
-                    ElevatedButton(
-                      onPressed: _goToNextStep,
-                      child: Text("Continue"),
                     ),
-                  ],
-                ),
+                  if (activeStep > 0) SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _goToNextStep,
+                      child: Text("Continue",
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -215,7 +228,7 @@ class _SetUpClassState extends State<SetUpClass> {
       case 2:
         return GoalForm(formData, formKeys[activeStep]);
       case 3:
-        return SetUpForm(formData);
+        return SetUpForm(formData, _goToStep);
       default:
         return Container(); // Placeholder, you can customize this based on your requirements
     }

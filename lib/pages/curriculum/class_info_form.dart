@@ -45,6 +45,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Term", style: paragraphSmallMedium500),
+                      SizedBox(height: 4.0),
                       DropdownButtonFormField2<String>(
                         items: ["Term 1", "Term 2", "Term 3"]
                             .map((String value) => DropdownMenuItem<String>(
@@ -92,6 +93,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Year", style: paragraphSmallMedium500),
+                      SizedBox(height: 4.0),
                       DropdownButtonFormField2<String>(
                         items: ["2023", "2024", "2025"]
                             .map((String value) => DropdownMenuItem<String>(
@@ -137,6 +139,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
             SizedBox(height: 16.0),
             // Date Picker for start date
             Text("Start Date", style: paragraphSmallMedium500),
+            SizedBox(height: 4.0),
             TextFormField(
               decoration: InputDecoration(
                 hintText: "Select date",
@@ -186,6 +189,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
             SizedBox(height: 16.0),
             // Dropdown for subject
             Text("Subject", style: paragraphSmallMedium500),
+            SizedBox(height: 4.0),
             DropdownButtonFormField2<String>(
               items: ["Math", "Literature"]
                   .map((String value) => DropdownMenuItem<String>(
@@ -237,6 +241,7 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
             ),
             SizedBox(height: 16.0),
             Text("Class Time", style: paragraphSmallMedium500),
+            SizedBox(height: 4.0),
             DropdownButtonFormField2<String>(
               items: ["AM - Morning", "PM - Afternoon or Evening"]
                   .map((String value) => DropdownMenuItem<String>(
@@ -274,8 +279,8 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
               ),
             ),
             SizedBox(height: 16.0),
-            Text("Level of students",
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Level of students", style: paragraphSmallMedium500),
+            SizedBox(height: 4.0),
             // Dropdown for categories based on subject
             DropdownButtonFormField2<String>(
               items: categories
