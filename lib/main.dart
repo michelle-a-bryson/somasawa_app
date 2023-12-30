@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import for home directory
 import 'package:somasawa_app/pages/home/home_page.dart';
@@ -75,13 +76,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPageIndex = 0;
-  final PageController _pageController = PageController();
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+  final pages = const <Widget>[
+    HomePage(),
+    AgendaPage(),
+    CurriculumPage(),
+    StudentPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -91,62 +92,96 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      // appBar: AppBar(
-      //   // TRY THIS: Try changing the color here to a specific color (to
-      //   // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-      //   // change color while the other colors stay the same.
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   // Here we take the value from the MyHomePage object that was created by
-      //   // the App.build method, and use it to set our appbar title.
-      //   title: Text(widget.title),
-      // ),
-      body: PageView(
-        controller: _pageController,
-        children: const <Widget>[
-          HomePage(),
-          AgendaPage(),
-          CurriculumPage(),
-          StudentPage(),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.easeOut,
+    return CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          activeColor: primary500,
+          backgroundColor: neutralWhite,
+          height: 64,
+          items: [
+            BottomNavigationBarItem(
+              activeIcon: Icon(Symbols.home_rounded, fill: 1),
+              icon: Icon(Symbols.home_rounded),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(Symbols.list_alt_rounded, fill: 1),
+              icon: Icon(Symbols.list_alt_rounded),
+              label: 'Agenda',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(Symbols.book_5_rounded, fill: 1),
+              icon: Icon(Symbols.book_5_rounded),
+              label: 'Curriculum',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(Symbols.face_rounded, fill: 1),
+              icon: Icon(Symbols.face_rounded),
+              label: 'Student',
+            ),
+          ],
+        ),
+        tabBuilder: (context, index) {
+          return CupertinoTabView(
+            builder: (context) {
+              return CupertinoPageScaffold(child: pages[index]);
+            },
           );
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        indicatorColor: const Color(0xFF36CED9),
-        backgroundColor: neutralWhite,
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Symbols.home_rounded, fill: 1),
-            icon: Icon(Symbols.home_rounded),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Symbols.list_alt_rounded, fill: 1),
-            icon: Icon(Symbols.list_alt_rounded),
-            label: 'Agenda',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Symbols.book_5_rounded, fill: 1),
-            icon: Icon(Symbols.book_5_rounded),
-            label: 'Curriculum',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Symbols.face_rounded, fill: 1),
-            icon: Icon(Symbols.face_rounded),
-            label: 'Student',
-          ),
-        ],
-      ),
-    );
+        });
+    // appBar: AppBar(
+    //   // TRY THIS: Try changing the color here to a specific color (to
+    //   // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+    //   // change color while the other colors stay the same.
+    //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+    //   // Here we take the value from the MyHomePage object that was created by
+    //   // the App.build method, and use it to set our appbar title.
+    //   title: Text(widget.title),
+    // ),
+    //   body: PageView(
+    //     controller: _pageController,
+    //     children: const <Widget>[
+    //       HomePage(),
+    //       AgendaPage(),
+    //       CurriculumPage(),
+    //       StudentPage(),
+    //     ],
+    //   ),
+    //   bottomNavigationBar: NavigationBar(
+    //     onDestinationSelected: (int index) {
+    //       _pageController.animateToPage(
+    //         index,
+    //         duration: const Duration(milliseconds: 400),
+    //         curve: Curves.easeOut,
+    //       );
+    //       setState(() {
+    //         currentPageIndex = index;
+    //       });
+    //     },
+    //     indicatorColor: const Color(0xFF36CED9),
+    //     backgroundColor: neutralWhite,
+    //     selectedIndex: currentPageIndex,
+    //     destinations: const <Widget>[
+    //       NavigationDestination(
+    //         selectedIcon: Icon(Symbols.home_rounded, fill: 1),
+    //         icon: Icon(Symbols.home_rounded),
+    //         label: 'Home',
+    //       ),
+    //       NavigationDestination(
+    //         selectedIcon: Icon(Symbols.list_alt_rounded, fill: 1),
+    //         icon: Icon(Symbols.list_alt_rounded),
+    //         label: 'Agenda',
+    //       ),
+    //       NavigationDestination(
+    //         selectedIcon: Icon(Symbols.book_5_rounded, fill: 1),
+    //         icon: Icon(Symbols.book_5_rounded),
+    //         label: 'Curriculum',
+    //       ),
+    //       NavigationDestination(
+    //         selectedIcon: Icon(Symbols.face_rounded, fill: 1),
+    //         icon: Icon(Symbols.face_rounded),
+    //         label: 'Student',
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }

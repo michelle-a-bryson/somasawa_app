@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:easy_stepper/easy_stepper.dart';
-import 'package:somasawa_app/pages/curriculum/class_goal_form.dart';
-import 'package:somasawa_app/pages/curriculum/class_info_form.dart';
-import 'package:somasawa_app/pages/curriculum/confirm_set_up.dart';
+import 'package:somasawa_app/pages/curriculum/set_up_class/class_goal_form.dart';
+import 'package:somasawa_app/pages/curriculum/set_up_class/class_info_form.dart';
+import 'package:somasawa_app/pages/curriculum/set_up_class/confirm_set_up.dart';
 import 'package:somasawa_app/pages/curriculum/curriculum_page.dart';
-import 'package:somasawa_app/pages/curriculum/student_info_form.dart';
-import 'package:somasawa_app/pages/curriculum/success_set_up.dart';
+import 'package:somasawa_app/pages/curriculum/set_up_class/student_info_form.dart';
+import 'package:somasawa_app/pages/curriculum/set_up_class/success_set_up.dart';
 import 'package:somasawa_app/styles/colors.dart';
 
 List<GlobalKey<FormState>> formKeys = [
@@ -47,10 +47,11 @@ class _SetUpClassState extends State<SetUpClass> {
 
   void _goToNextStep() {
     if (activeStep == 3) {
-      Navigator.of(context).push(
+      Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => CurriculumPage(),
+          builder: (context) => SuccessSetup(),
         ),
+        (route) => false,
       );
     } else {
       final form = formKeys[activeStep].currentState;
@@ -182,7 +183,7 @@ class _SetUpClassState extends State<SetUpClass> {
               displayStepForm(activeStep),
               SizedBox(height: 16),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (activeStep > 0)
                     Expanded(
