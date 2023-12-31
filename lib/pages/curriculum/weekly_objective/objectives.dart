@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/edit_goal.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/manage_objective.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
 
@@ -11,7 +13,7 @@ class ObjectiveView extends StatefulWidget {
 }
 
 class _ObjectiveViewState extends State<ObjectiveView> {
-  final List<String> weeks = [
+  List<String> weeks = [
     "JUL 10 - JUL 16, 2023",
     "JUL 17 - JUL 23, 2023",
     "JUL 24 - JUL 30, 2023",
@@ -19,6 +21,14 @@ class _ObjectiveViewState extends State<ObjectiveView> {
     "AUG 7 - AUG 13, 2023",
     "AUG 14 - AUG 20, 2023",
   ];
+
+  String goal = '';
+
+  void editGoal(String editedGoal) {
+    setState(() {
+      goal = editedGoal;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +50,20 @@ class _ObjectiveViewState extends State<ObjectiveView> {
               border: Border.all(color: neutral100),
             ),
             child: ListTile(
-              title: Text("Goal", style: paragraphMediumRegular400),
+              contentPadding: EdgeInsets.only(left: 16),
+              title: Text(goal, style: paragraphMediumRegular400),
               trailing: IconButton(
                 icon: const Icon(Symbols.edit),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditGoal(
+                        initialGoal: goal,
+                        editGoal: editGoal,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -95,7 +115,16 @@ class _ObjectiveViewState extends State<ObjectiveView> {
                           Symbols.arrow_forward_ios,
                           size: 16,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ManageObjective(
+                                index: index,
+                                week: week,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(height: 8.0),
@@ -151,6 +180,8 @@ class _ObjectiveViewState extends State<ObjectiveView> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(primary500),
                 backgroundColor: MaterialStateProperty.all<Color>(neutralWhite),
+                side: MaterialStateProperty.all<BorderSide>(
+                    BorderSide(color: primary500)),
               ),
               onPressed: () {},
               icon: Icon(Symbols.settings),

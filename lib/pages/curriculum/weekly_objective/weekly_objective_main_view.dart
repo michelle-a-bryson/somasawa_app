@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:somasawa_app/pages/curriculum/set_up_class/set_up_class.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar.dart';
-import 'package:somasawa_app/pages/curriculum/weekly_objective/objective.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/objectives.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:somasawa_app/styles/texts.dart';

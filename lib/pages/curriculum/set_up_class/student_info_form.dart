@@ -143,6 +143,7 @@ class _StudentFormState extends State<StudentForm> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: ListTile(
+                                contentPadding: EdgeInsets.only(left: 16),
                                 title: Text(student),
                                 trailing: IconButton(
                                   icon: const Icon(Icons.delete),

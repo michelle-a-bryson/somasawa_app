@@ -82,6 +82,7 @@ flutter:
   assets:
   - assets/no_class_curriculum.svg
   - assets/completed_setup.svg
+  - assets/no_weekly_objective.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
