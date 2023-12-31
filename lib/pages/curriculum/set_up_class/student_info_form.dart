@@ -138,7 +138,10 @@ class _StudentFormState extends State<StudentForm> {
                         return Column(
                           children: [
                             Container(
-                              color: neutralWhite,
+                              decoration: BoxDecoration(
+                                color: neutralWhite,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                               child: ListTile(
                                 title: Text(student),
                                 trailing: IconButton(

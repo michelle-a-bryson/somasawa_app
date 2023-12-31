@@ -2,7 +2,7 @@ import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:somasawa_app/pages/curriculum/set_up_class/set_up_class.dart';
-import 'package:somasawa_app/pages/curriculum/weekly_objective_view.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/weekly_objective_view.dart';
 import 'package:somasawa_app/styles/colors.dart';
 
 //this is the main curriculum page
