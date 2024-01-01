@@ -24,7 +24,8 @@ class _ClassInfoFormState extends State<ClassInfoForm> {
       key: widget.formKey,
       child: Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Add a Class Information",

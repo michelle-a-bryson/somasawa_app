@@ -79,7 +79,7 @@ class _SetUpClassState extends State<SetUpClass> {
         key: _formKey,
         child: Container(
           color: neutral100,
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.only(bottom: 76, left: 16, right: 16),
           child: ListView(
             children: [
               Padding(
@@ -181,30 +181,35 @@ class _SetUpClassState extends State<SetUpClass> {
                 ),
               ),
               displayStepForm(activeStep),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (activeStep > 0)
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: _goToPreviousStep,
-                        child:
-                            Text("Back", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                  if (activeStep > 0) SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _goToNextStep,
-                      child: Text("Continue",
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
+        ),
+      ),
+      bottomSheet: Container(
+        height: 76,
+        decoration: BoxDecoration(
+          color: neutralWhite,
+        ),
+        padding: EdgeInsets.all(16),
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (activeStep > 0)
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: _goToPreviousStep,
+                  child: Text("Back", style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            if (activeStep > 0) SizedBox(width: 16),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: _goToNextStep,
+                child: Text("Continue", style: TextStyle(color: Colors.white)),
+              ),
+            ),
+          ],
         ),
       ),
     );

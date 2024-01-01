@@ -17,7 +17,8 @@ class _SetUpFormState extends State<SetUpForm> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 16),
-      child: ListView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Confirm to set up a class",
