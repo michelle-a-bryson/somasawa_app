@@ -99,6 +99,10 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
               ),
             ),
             TabBar(
+              dividerColor: neutral200,
+              indicatorColor: primary500,
+              indicatorSize:
+                  TabBarIndicatorSize.tab, // Set the indicator size to tab
               tabs: [
                 Tab(
                   text: 'Objective',
