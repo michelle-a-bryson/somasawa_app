@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/edit_class.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/edit_goal.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/manage_objective.dart';
 import 'package:somasawa_app/styles/colors.dart';
@@ -22,7 +23,17 @@ class _ObjectiveViewState extends State<ObjectiveView> {
     "AUG 14 - AUG 20, 2023",
   ];
 
-  String goal = '';
+  String goal = "Reading first page";
+
+  Map<String, dynamic> classData = {
+    "term": "Term 1",
+    "schoolYear": "2023",
+    "level": "Reading",
+    "startDate": "June 10, 2023",
+    "subject": "Literature",
+    "classTime": "AM",
+    "students": ["John Doe", "Jane Doe", "John Smith", "Jane Smith"]
+  };
 
   void editGoal(String editedGoal) {
     setState(() {
@@ -183,7 +194,13 @@ class _ObjectiveViewState extends State<ObjectiveView> {
                 side: MaterialStateProperty.all<BorderSide>(
                     BorderSide(color: primary500)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EditClass(classData),
+                  ),
+                );
+              },
               icon: Icon(Symbols.settings),
               label: Text(
                 "Edit the class",

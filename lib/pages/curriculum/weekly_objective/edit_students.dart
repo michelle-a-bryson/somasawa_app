@@ -40,7 +40,8 @@ class _EditStudentsState extends State<EditStudents> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
+        padding:
+            const EdgeInsets.only(top: 24, bottom: 76, left: 16, right: 16),
         child: ListView(
           children: [
             Text("Search student", style: paragraphSmallMedium500),
@@ -163,7 +164,7 @@ class _EditStudentsState extends State<EditStudents> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text("Done", style: TextStyle(color: neutralWhite)),
+          child: Text("Save change", style: TextStyle(color: neutralWhite)),
         ),
       ),
     );
