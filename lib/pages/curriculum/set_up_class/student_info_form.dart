@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
 
@@ -35,8 +36,7 @@ class _StudentFormState extends State<StudentForm> {
       key: widget.formKey,
       child: Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               "Add students",
@@ -146,7 +146,11 @@ class _StudentFormState extends State<StudentForm> {
                                 contentPadding: EdgeInsets.only(left: 16),
                                 title: Text(student),
                                 trailing: IconButton(
-                                  icon: const Icon(Icons.delete),
+                                  icon: const Icon(
+                                    Symbols.delete_rounded,
+                                    weight: 600,
+                                    size: 18,
+                                  ),
                                   onPressed: () {
                                     setState(() {
                                       widget.formData['students']
@@ -154,7 +158,6 @@ class _StudentFormState extends State<StudentForm> {
                                     });
                                   },
                                 ),
-                                leading: const Icon(Icons.person),
                               ),
                             ),
                             const SizedBox(height: 8.0),

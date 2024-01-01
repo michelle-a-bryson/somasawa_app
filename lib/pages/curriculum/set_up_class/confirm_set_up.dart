@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
 
@@ -18,8 +17,7 @@ class _SetUpFormState extends State<SetUpForm> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           Text(
             "Confirm to set up a class",
@@ -198,22 +196,23 @@ class _SetUpFormState extends State<SetUpForm> {
                 ? []
                 : List<Widget>.from(
                     widget.formData['students'].map((student) {
-                      int index = widget.formData['students'].indexOf(student);
                       return Column(
                         children: [
                           Container(
                             color: neutralWhite,
                             child: ListTile(
                               title: Text(student),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  setState(() {
-                                    widget.formData['students'].removeAt(index);
-                                  });
-                                },
+                              leading: Container(
+                                padding: EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: primary50,
+                                ),
+                                child: Icon(
+                                  Icons.person,
+                                  color: primary500,
+                                ),
                               ),
-                              leading: const Icon(Icons.person),
                             ),
                           ),
                           const SizedBox(height: 8.0),

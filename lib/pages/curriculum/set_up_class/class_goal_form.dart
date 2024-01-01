@@ -19,8 +19,7 @@ class _GoalFormState extends State<GoalForm> {
       key: widget.formKey,
       child: Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               "Add goals of the term",
