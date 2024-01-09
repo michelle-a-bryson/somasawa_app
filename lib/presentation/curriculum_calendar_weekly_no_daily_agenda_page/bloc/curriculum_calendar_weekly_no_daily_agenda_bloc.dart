@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:somasawa_app/presentation/curriculum_calendar_weekly_no_daily_agenda_page/models/curriculum_calendar_weekly_no_daily_agenda_model.dart';
+import 'package:somasawa_app/presentation/curriculum_calendar_weekly_no_daily_agenda_page/model/curriculum_calendar_weekly_no_daily_agenda_model.dart'; //said models instead of model, throwing error
 part 'curriculum_calendar_weekly_no_daily_agenda_event.dart';
 part 'curriculum_calendar_weekly_no_daily_agenda_state.dart';
 
@@ -11,8 +11,7 @@ class CurriculumCalendarWeeklyNoDailyAgendaBloc extends Bloc<
     CurriculumCalendarWeeklyNoDailyAgendaEvent,
     CurriculumCalendarWeeklyNoDailyAgendaState> {
   CurriculumCalendarWeeklyNoDailyAgendaBloc(
-      CurriculumCalendarWeeklyNoDailyAgendaState initialState)
-      : super(initialState) {
+      super.initialState) {
     on<CurriculumCalendarWeeklyNoDailyAgendaInitialEvent>(_onInitialize);
   }
 

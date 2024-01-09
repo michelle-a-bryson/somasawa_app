@@ -12,6 +12,7 @@ class NoInternetException implements Exception {
   late String _message;
 
   NoInternetException([String message = 'NoInternetException Occurred']) {
+    var globalMessengerKey; //temporary placeholder
     if (globalMessengerKey.currentState != null) {
       globalMessengerKey.currentState!
           .showSnackBar(SnackBar(content: Text(message)));

@@ -1,3 +1,4 @@
+import '../curriculum_calendar_weekly_absent_class_page/models/curriculum_calendar_weekly_absent_class_model.dart';
 import 'bloc/curriculum_calendar_weekly_absent_class_bloc.dart';
 import 'models/curriculum_calendar_weekly_absent_class_model.dart';
 import 'package:somasawa_app/core/app_export.dart';
@@ -19,7 +20,7 @@ class CurriculumCalendarWeeklyAbsentClassPage extends StatefulWidget {
                 curriculumCalendarWeeklyAbsentClassModelObj:
                 CurriculumCalendarWeeklyAbsentClassModel()))
           ..add(CurriculumCalendarWeeklyAbsentClassInitialEvent()),
-        child: CurriculumCalendarWeeklyAbsentClassPage());
+        child: const CurriculumCalendarWeeklyAbsentClassPage());
   }
 }
 
@@ -32,6 +33,7 @@ class CurriculumCalendarWeeklyAbsentClassPageState
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
         child: Scaffold(
             body: SizedBox(

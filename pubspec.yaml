@@ -85,9 +85,24 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/no_class_curriculum.svg
-  - assets/completed_setup.svg
-  - assets/no_weekly_objective.svg
+  - assets/images/no_class_curriculum.svg
+  - assets/images/completed_setup.svg
+  - assets/images/no_weekly_objective.svg
+  - assets/images/image-not-found-icon.svg
+  - assets/images/image_icon_filled.svg
+  - assets/images/image_icon_left.svg
+  - assets/images/img_icon_left_indigo_900.svg
+  - assets/images/img_nav_agenda.svg
+  - assets/images/img_nav_curriculum.svg
+  - assets/images/img_nav_home.svg
+  - assets/images/img_nav_icon_unfilled_indigo_900_48x48.svg
+  - assets/images/img_nav_student.svg
+  - assets/images/img_new_icon.svg
+  - assets/images/img_new_icon_unfilled.svg
+  - assets/images/img_new_icon_unfilled_indigo_600.svg
+  - assets/images/img_new_icon_unfilled_indigo_900.svg
+  - assets/images/img_new_icon_unfilled_red_700.svg
+  - assets/images/img_vector.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

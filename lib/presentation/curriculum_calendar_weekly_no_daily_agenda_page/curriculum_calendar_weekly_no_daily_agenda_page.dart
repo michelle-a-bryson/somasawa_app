@@ -1,5 +1,5 @@
 import 'bloc/curriculum_calendar_weekly_no_daily_agenda_bloc.dart';
-import 'models/curriculum_calendar_weekly_no_daily_agenda_model.dart';
+import 'model/curriculum_calendar_weekly_no_daily_agenda_model.dart';
 import 'package:somasawa_app/core/app_export.dart';
 import 'package:somasawa_app/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';

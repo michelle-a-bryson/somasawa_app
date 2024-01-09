@@ -11,10 +11,7 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
 class CurriculumCalendarMonthlyTabContainerPage extends StatefulWidget {
-  const CurriculumCalendarMonthlyTabContainerPage({Key? key})
-      : super(
-    key: key,
-  );
+  const CurriculumCalendarMonthlyTabContainerPage({super.key});
 
   @override
   CurriculumCalendarMonthlyTabContainerPageState createState() =>
@@ -27,7 +24,7 @@ class CurriculumCalendarMonthlyTabContainerPage extends StatefulWidget {
             CurriculumCalendarMonthlyTabContainerModel(),
           ))
         ..add(CurriculumCalendarMonthlyTabContainerInitialEvent()),
-      child: CurriculumCalendarMonthlyTabContainerPage(),
+      child: const CurriculumCalendarMonthlyTabContainerPage(),
     );
   }
 }
@@ -67,7 +64,7 @@ class CurriculumCalendarMonthlyTabContainerPageState
                             height: 915.v,
                             child: TabBarView(
                               controller: tabviewController,
-                              children: [
+                              children: const [
                                 CurriculumCalendarMonthlyPage(),
                                 CurriculumCalendarWeeklyNoDailyAgendaPage(),
                               ],

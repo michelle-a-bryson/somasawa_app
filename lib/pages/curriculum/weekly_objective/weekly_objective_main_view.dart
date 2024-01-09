@@ -6,7 +6,7 @@ import 'package:somasawa_app/styles/colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:somasawa_app/styles/texts.dart';
 
-import '../../../presentation/curriculum_calendar_monthly_tab_container_screen/curriculum_calendar_monthly_tab_container_screen.dart';
+import '../../../presentation/curriculum_calendar_monthly_tab_container1_screen/curriculum_calendar_monthly_tab_container1_screen.dart';
 
 class WeeklyObjectiveView extends StatefulWidget {
   const WeeklyObjectiveView({super.key});
@@ -121,7 +121,7 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
                   ObjectiveView(),
 
                   // Second tab view (Calendar)
-                  const CurriculumCalendarMonthlyTabContainerScreen(),
+                  CurriculumCalendarMonthlyTabContainer1Screen(),
                 ],
               ),
             ),
