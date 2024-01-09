@@ -1,13 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+
 //import for home directory
 import 'package:somasawa_app/pages/home/home_page.dart';
 //import for agenda directory
 import 'package:somasawa_app/pages/agenda/agenda_page.dart';
 import 'package:somasawa_app/pages/curriculum/curriculum_page.dart'; //import the curriculum_page here so it can be used
 import 'package:somasawa_app/pages/student/student_page.dart';
+//import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar/calendar.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
+
+
+
 
 void main() {
   runApp(const MyApp());
@@ -97,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           activeColor: primary500,
           backgroundColor: neutralWhite,
           height: 64,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               activeIcon: Icon(Symbols.home_rounded, fill: 1),
               icon: Icon(Symbols.home_rounded),

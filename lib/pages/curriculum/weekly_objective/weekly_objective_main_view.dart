@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:somasawa_app/pages/curriculum/set_up_class/set_up_class.dart';
-import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar.dart';
+//import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar/calendar.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/objectives.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:somasawa_app/styles/texts.dart';
+
+import '../../../presentation/curriculum_calendar_monthly_tab_container_screen/curriculum_calendar_monthly_tab_container_screen.dart';
 
 class WeeklyObjectiveView extends StatefulWidget {
   const WeeklyObjectiveView({super.key});
@@ -22,7 +24,7 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
         appBar: AppBar(
           title:
               const Text("Curriculum", style: TextStyle(color: Colors.white)),
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.white, //change your color here
           ),
           actions: [
@@ -119,7 +121,7 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
                   ObjectiveView(),
 
                   // Second tab view (Calendar)
-                  CalendarView(),
+                  const CurriculumCalendarMonthlyTabContainerScreen(),
                 ],
               ),
             ),

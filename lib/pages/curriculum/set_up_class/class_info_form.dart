@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:somasawa_app/constants/student_levels.dart';
+import 'package:somasawa_app/core/constants/student_levels.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
-import 'package:somasawa_app/utilities/validators.dart';
+import 'package:somasawa_app/core/utils/validators.dart';
 
 class ClassInfoForm extends StatefulWidget {
   final Map<String, dynamic> formData;

@@ -5,14 +5,13 @@ import 'package:somasawa_app/pages/curriculum/weekly_objective/add_objective.dar
 import 'package:somasawa_app/pages/curriculum/weekly_objective/edit_objective.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
-import 'package:somasawa_app/utilities/bottom_modal.dart';
+import 'package:somasawa_app/core/utils/bottom_modal.dart';
 
 class ManageObjective extends StatefulWidget {
   final int index;
   final String week;
 
-  const ManageObjective({Key? key, required this.index, required this.week})
-      : super(key: key);
+  const ManageObjective({super.key, required this.index, required this.week});
 
   @override
   State<ManageObjective> createState() => _ManageObjectiveState();
@@ -51,13 +50,13 @@ class _ManageObjectiveState extends State<ManageObjective> {
       ),
       body: ListView(
         children: [
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(widget.week, style: headingH5Medium500),
           ),
-          SizedBox(height: 24),
-          if (objectives != null && objectives.isNotEmpty)
+          const SizedBox(height: 24),
+          if (objectives.isNotEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -127,7 +126,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                                 color: error100,
                                 borderRadius: BorderRadius.circular(100),
                               ),
-                              padding: EdgeInsets.all(4),
+                              padding: const EdgeInsets.all(4),
                               child: Icon(
                                 Symbols.sports_score_rounded,
                                 color: error500,
@@ -135,7 +134,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
@@ -154,7 +153,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                                   Symbols.checklist_rounded,
                                   color: neutral500,
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text("2/4",
                                     style: TextStyle(color: neutral500)),
                               ],
@@ -163,14 +162,14 @@ class _ManageObjectiveState extends State<ManageObjective> {
                         ],
                       ),
                     ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Text("Add new objective",
                       style: TextStyle(
                         color: primary500,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       )),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   IconButton(
                     icon: Container(
                       width: 48,
@@ -199,7 +198,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                 ],
               ),
             ),
-          if (objectives == null || objectives.isEmpty)
+          if (objectives.isEmpty)
             Column(
               children: [
                 Container(
@@ -209,7 +208,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                     "assets/no_weekly_objective.svg",
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
@@ -219,7 +218,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                         style: headingH4Bold700,
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         "Please add your teaching objectives in our learning app to start planning.",
                         style: paragraphSmallRegular400,
@@ -239,7 +238,7 @@ class _ManageObjectiveState extends State<ManageObjective> {
                               ),
                             );
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
