@@ -88,6 +88,7 @@ class _StudentFormState extends State<StudentForm> {
                     widget.formData['students'].add(student);
                     selectedStudents.add(student);
                     textController.clear();
+                    FocusScope.of(context).unfocus();
                   });
                 },
                 emptyBuilder: (context) {
@@ -102,8 +103,10 @@ class _StudentFormState extends State<StudentForm> {
                         widget.formData['students'].add(textController.text);
                         selectedStudents.add(textController.text);
                         textController.clear();
+                        FocusScope.of(context).unfocus();
                       });
                     },
+                    tileColor: Colors.white,
                   );
                 }),
 
