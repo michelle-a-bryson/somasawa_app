@@ -44,7 +44,7 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
                   });
                 },
               ),
-              Text(
+              Text( //shouldn't have a text, should have the segmented button instead
                 "Weekly",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),

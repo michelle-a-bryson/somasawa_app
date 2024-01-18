@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:somasawa_app/pages/curriculum/set_up_class/set_up_class.dart';
+//import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar_views/calendar_view.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar_views/combined_calendar_view.dart';
+import 'package:somasawa_app/pages/curriculum/weekly_objective/class_listing.dart';
 //import 'package:somasawa_app/pages/curriculum/weekly_objective/calendar/calendar.dart';
 import 'package:somasawa_app/pages/curriculum/weekly_objective/objectives.dart';
 import 'package:somasawa_app/styles/colors.dart';
@@ -15,6 +17,13 @@ class WeeklyObjectiveView extends StatefulWidget {
 }
 
 class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
+
+  void _navigateToClasses() {
+    //this function handles the routing logic to navigate to the classes page
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => ClassListing()),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -35,13 +44,13 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
                   size: 16,
                   weight: 500,
                 ),
-                label: Text('Add new term'),
+                label: const Text('Add new term'),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SetUpClass()),
+                    MaterialPageRoute(builder: (context) => SetUpClass()),  //logic that reroutes the user to the SetUpClass() page
                   );
                 },
-                style: ButtonStyle(
+                style: ButtonStyle(  //defines the style of the button
                   foregroundColor: MaterialStateProperty.all<Color>(primary500),
                   backgroundColor: MaterialStateProperty.all<Color>(primary50),
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -69,8 +78,8 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
                         color: primary50,
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child: IconButton(
-                        onPressed: () {},
+                      child: IconButton(  //logic to redirect the user to the list of active and archived classes needs to be implemented here
+                        onPressed: _navigateToClasses,  //call on the navigate to classes function
                         icon: Icon(Symbols.swap_horiz),
                         color: primary500,
                       ),
@@ -120,7 +129,7 @@ class _WeeklyObjectiveViewState extends State<WeeklyObjectiveView> {
                   ObjectiveView(),
 
                   // Second tab view (Calendar)
-                  CombinedCalendarView(),
+                  const CombinedCalendarView(),
                 ],
               ),
             ),
