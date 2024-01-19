@@ -12,19 +12,21 @@ import 'class_model.dart';
 class ClassDetailScreen extends StatelessWidget {
   final ClassModel classModel;
 
-  const ClassDetailScreen({Key? key, required this.classModel}) : super(key: key);
+  ClassDetailScreen({Key? key, required this.classModel}) : super(key: key);
+
+  final weekDateRanges = [
+    'JUL 10 - JUL 16, 2022',
+    'JUL 17 - JUL 23, 2022',
+    'JUL 24 - JUL 30, 2022',
+    'JUL 31 - AUG 6, 2022',
+    'AUG 7 - AUG 13, 2022',
+    'AUG 14 - AUG 20, 2022',
+  ];
 
   @override
   Widget build(BuildContext context) {
     // Define the list of date ranges for the weeks.
-    final weekDateRanges = [
-      'JUL 10 - JUL 16, 2022',
-      'JUL 17 - JUL 23, 2022',
-      'JUL 24 - JUL 30, 2022',
-      'JUL 31 - AUG 6, 2022',
-      'AUG 7 - AUG 13, 2022',
-      'AUG 14 - AUG 20, 2022',
-    ];
+
 
     return Scaffold(
       appBar: AppBar(
@@ -148,7 +150,7 @@ class ClassDetailScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         // List of weekly objectives
-        ...List.generate(6, (index) => buildWeeklyObjectiveItem(index + 1)),  //widget buildWeeklyObjectiveItem has been defined below
+        ...List.generate(6, (index) => buildWeeklyObjectiveItem(index + 1, weekDateRanges[index])),  //widget buildWeeklyObjectiveItem has been defined below
       ],
     );
   }
