@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'class_model.dart';
+import 'class_detail_view.dart';
 
 class ClassListing extends StatelessWidget {
   final List<ClassModel> currentClasses = [
@@ -9,8 +10,9 @@ class ClassListing extends StatelessWidget {
   ];
 
   final List<ClassModel> pastClasses = [
-    ClassModel(title: 'TERM 1, 2022 - LITERACY (PM)', term: 'Paragraph', isArchived: true),
+    //in the figma design, math comes before literacy
     ClassModel(title: 'TERM 2, 2022 - MATH (PM)', term: 'Addition', isArchived: true),
+    ClassModel(title: 'TERM 1, 2022 - LITERACY (PM)', term: 'Paragraph', isArchived: true),
   ];
 
   ClassListing({Key? key}) : super(key: key);
@@ -21,7 +23,12 @@ class ClassListing extends StatelessWidget {
     double borderWidth = isFirst ? 2 : 1;
     Color backgroundColor = Color(0xFFEAEDFA); // This sets the background color for both icons
 
-    return Container(
+    return InkWell(
+        onTap: isArchived ? () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ClassDetailScreen(classModel: classModel)),
+        ) : null, // Only make past class cards clickable
+    child: Container(
       width: 328,
       height: 80,  //initially set to 97 to resolve pixel overflow, but then changed it back and changed font size from 14 --> 13.5
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -74,7 +81,7 @@ class ClassListing extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
 
