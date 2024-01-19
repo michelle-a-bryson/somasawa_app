@@ -3,7 +3,7 @@
 An educational app for Sawa Africa
 
 Notes Regarding the file structure:
-
+```
 ├── android                         - It contains files required to run the application on an Android platform.
 ├── assets                          - It contains all images and fonts of your application.
 ├── ios                             - It contains files required to run the application on an iOS platform.
@@ -18,3 +18,4 @@ Notes Regarding the file structure:
 ├── routes                      - It contains all the routes of the application
 └── theme                       - It contains app theme and decoration classes
 └── widgets                     - It contains all custom widget classes
+```
