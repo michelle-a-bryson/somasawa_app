@@ -55,7 +55,6 @@ dependencies:
   shared_preferences: ^2.2.2
   table_calendar: ^3.0.9
   uuid: ^4.2.2
-  table_calendar: ^3.0.9
   font_awesome_flutter: ^9.1.0
 
 dev_dependencies:
