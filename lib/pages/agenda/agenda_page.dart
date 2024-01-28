@@ -6,6 +6,7 @@ import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'components/add_group.dart';
 import 'components/group_activities.dart';
 
 class AgendaPage extends StatelessWidget {
@@ -96,23 +97,33 @@ class AddGroupButton extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
       padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Add group",
-              style: paragraphMediumMedium500.copyWith(color: primary500),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Icon(
-              Icons.add_circle_sharp,
-              size: 48,
-              color: primary500,
-            )
-          ],
+        child: GestureDetector(
+          onTap: () {
+            log("Add group button tapped");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddGroup(),
+              ),
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Add group",
+                style: paragraphMediumMedium500.copyWith(color: primary500),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Icon(
+                Icons.add_circle_sharp,
+                size: 48,
+                color: primary500,
+              )
+            ],
+          ),
         ),
       ),
     );
