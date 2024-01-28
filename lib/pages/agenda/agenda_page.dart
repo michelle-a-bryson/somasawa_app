@@ -6,6 +6,7 @@ import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'components/add_group.dart';
 import 'components/group_activities.dart';
 
 class AgendaPage extends StatelessWidget {
@@ -14,6 +15,13 @@ class AgendaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Daily Agenda',
+          style: TextStyle(color: Colors.white),
+        ), //sets the title of the appbar
+        backgroundColor: primary500, //sets the background color of the appbar
+      ),
       body: Container(
         padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
         height: double.infinity,
@@ -33,8 +41,8 @@ class AgendaPage extends StatelessWidget {
               focusedDay: DateTime.now(),
               calendarFormat: CalendarFormat.week,
               onFormatChanged: (CalendarFormat format) {
-                log("fasd");
-                print(format);
+                log("format changed");
+                // print(format);
               },
             ),
           ),
@@ -49,19 +57,26 @@ class AgendaPage extends StatelessWidget {
             'Start planning the daily agenda by adding daily activites',
             style: paragraphMediumRegular400,
           ),
-          Container(
-              margin: EdgeInsets.fromLTRB(0, 16, 0, 8),
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: primary400,
-                borderRadius: BorderRadius.circular(30),
+          ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor:
+                    primary500, //changed from primary, secondary --> foreground, background color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      30), //Rounds the corners of the buttons.
+                ),
+                // margin: EdgeInsets.fromLTRB(0, 16, 0, 8),
+                padding:
+                    EdgeInsets.all(16), //sets the padding inside the button
               ),
-              width: double.infinity,
               child: Center(
                   child: Text(
                 "+ Add daily activity",
                 style: paragraphMediumMedium500.copyWith(color: Colors.white),
               ))),
+
           // GroupActivities(),
           GroupActivities(),
           AddGroupButton()
@@ -82,23 +97,33 @@ class AddGroupButton extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
       padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Add group",
-              style: paragraphMediumMedium500.copyWith(color: primary500),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Icon(
-              Icons.add_circle_sharp,
-              size: 48,
-              color: primary500,
-            )
-          ],
+        child: GestureDetector(
+          onTap: () {
+            log("Add group button tapped");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddGroup(),
+              ),
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Add group",
+                style: paragraphMediumMedium500.copyWith(color: primary500),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Icon(
+                Icons.add_circle_sharp,
+                size: 48,
+                color: primary500,
+              )
+            ],
+          ),
         ),
       ),
     );

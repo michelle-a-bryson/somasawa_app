@@ -1,6 +1,12 @@
+import 'dart:developer';
+
+import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:somasawa_app/styles/colors.dart';
 import 'package:somasawa_app/styles/texts.dart';
+
+import 'add_activity.dart';
 
 class GroupActivities extends StatelessWidget {
   const GroupActivities({
@@ -93,19 +99,30 @@ class GroupActivities extends StatelessWidget {
                 SingleAgenda(),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      // color: Colors.blue,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: primary500),
-                    ),
-                    width: double.infinity,
-                    child: Center(
-                        child: Text(
-                      "+ Add daily activity",
-                      style:
-                          paragraphMediumMedium500.copyWith(color: primary500),
-                    ))),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          log("Add a new activity button pressed");
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AddActivity()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          // foregroundColor: Colors.white,
+                          backgroundColor: Colors
+                              .white, //changed from primary, secondary --> foreground, background color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                30), //Rounds the corners of the buttons.
+                          ),
+                          // margin: EdgeInsets.fromLTRB(0, 16, 0, 8),
+                          padding: EdgeInsets.all(
+                              16), //sets the padding inside the button
+                        ),
+                        child: Center(
+                            child: Text(
+                          "+ Add a new activity",
+                          style: paragraphMediumMedium500.copyWith(
+                              color: primary500),
+                        ))))
               ],
             ),
           )
