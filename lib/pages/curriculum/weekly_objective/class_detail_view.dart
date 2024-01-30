@@ -123,12 +123,6 @@ class ClassDetailScreen extends StatelessWidget {
 
   Widget buildTabSection() {
     //we will need to declare the list here again and render it as intended
-    // ignore: unnecessary_new
-    var classRanges = new List(6); //initialize an empty list
-    //assign values to each of them
-    classRanges[0] = 'JUL 10 - JUL 16, 2022';
-    classRanges[1] = 'JUL 17 - JUL 23, 2022';
-    classRanges[2] = ''
 
     return DefaultTabController(
       length: 2,
@@ -148,8 +142,8 @@ class ClassDetailScreen extends StatelessWidget {
                 300, // Give a fixed height or use another method to constrain the height
             // ignore: prefer_const_constructors
             child: TabBarView(
-              children: const [
-                ArchivedObjectiveView("Read the first page", weekDateRanges),
+              children: [  //adding const won't help fix the problem in regards to the array not working
+                ArchivedObjectiveView(termGoal: "Be able to add numbers", weekDateRanges: weekDateRanges),  //this is how parameter values are assigned in dart
                 //buildObjectivesContent(),
                 Center(
                     child: Text(
