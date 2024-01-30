@@ -6,10 +6,10 @@ class SetUpForm extends StatefulWidget {
   final Map<String, dynamic> formData;
   final Function(int) goToStep;
 
-  SetUpForm(this.formData, this.goToStep);
+  SetUpForm(this.formData, this.goToStep);  //saves the infomration inputted by the user
 
   @override
-  State<SetUpForm> createState() => _SetUpFormState();
+  State<SetUpForm> createState() => _SetUpFormState();  //this is how a state is created in dart, similar to react states
 }
 
 class _SetUpFormState extends State<SetUpForm> {
