@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:somasawa_app/styles/colors.dart';
@@ -79,15 +80,142 @@ class AgendaPage extends StatelessWidget {
 
           // GroupActivities(),
           GroupActivities(),
-          AddGroupButton()
+          AddGroupWidget(),
+          SingleComment(),
+          SingleComment(),
+          SingleComment(),
+          SizedBox(
+            height: 32,
+          ),
+          CommentBox()
         ])),
       ),
     );
   }
 }
 
-class AddGroupButton extends StatelessWidget {
-  const AddGroupButton({
+class CommentBox extends StatelessWidget {
+  const CommentBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.fromLTRB(18, 40, 18, 8),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(width: 1.0, color: neutral100),
+          ),
+        ),
+        child: Column(
+          children: [
+            TextField(
+              minLines: 1,
+              maxLines: 3,
+              decoration: InputDecoration(
+                  hintText: "Write a comment...",
+                  hintStyle:
+                      paragraphMediumMedium500.copyWith(color: neutral400),
+                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: neutral100,
+                  focusColor: Colors.blue,
+                  hoverColor: Colors.black),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("@ Tag someone",
+                    style: paragraphSmallMedium500.copyWith(color: neutral500)),
+                GestureDetector(
+                  onTap: () {
+                    log("Send button tapped");
+                  },
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor:
+                        primary500, // Change this to your desired color
+                    child: Icon(
+                      Icons.send, // Change this to your desired icon
+                      size: 18,
+                      color: Colors.white, // Change this to your desired color
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ));
+  }
+}
+
+class SingleComment extends StatelessWidget {
+  const SingleComment({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(18, 24, 18, 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(width: 1.0, color: neutral100),
+        ),
+      ),
+      child: Column(children: [
+        Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: primary50,
+              radius: 14,
+              child: Icon(
+                Icons.chat_bubble,
+                color: primary500,
+                size: 12,
+              ),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              "Jane Mood",
+              style:
+                  paragraphLargeMedium500.copyWith(color: primary600Original),
+            ),
+            Text(
+              "(Me)",
+              style: paragraphOverlineSmall.copyWith(color: primary300),
+            ),
+            Spacer(),
+            Text(
+              "JUL 11",
+              style: paragraphSmallBold700.copyWith(color: neutral500),
+            ),
+            Icon(Icons.more_horiz, color: primary500)
+          ],
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Text(
+          "@Joyce Wood Hello, please review my week 1 lesson plan. \nCan you cover for me on Wednesday?",
+          style: paragraphMediumRegular400.copyWith(color: neutralBlack),
+        ),
+      ]),
+    );
+  }
+}
+
+class AddGroupWidget extends StatelessWidget {
+  const AddGroupWidget({
     super.key,
   });
 
