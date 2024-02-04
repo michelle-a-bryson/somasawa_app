@@ -50,15 +50,45 @@ class GroupActivities extends StatelessWidget {
                 Container(
                   width: 20,
                 ),
-                Icon(
-                  Icons.more_horiz,
-                  color: primary500,
+                IconButton(
+                  onPressed: () {
+                    log("More button pressed");
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (builder) {
+                          return ModalWidget(
+                            context,
+                            title: "Group #12",
+                            childrenWidgets: [
+                              SizedBox(
+                                height: 32,
+                              ),
+                              Text(
+                                "Edit group",
+                                style: paragraphMediumRegular400,
+                              ),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Text(
+                                "Delete group",
+                                style: paragraphMediumRegular400.copyWith(
+                                    color: error500),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  icon: Icon(
+                    Icons.more_horiz,
+                    color: primary500,
+                  ),
                 )
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 10, 28, 0),
             // height: 56,
             child: Column(
               children: [
@@ -95,8 +125,8 @@ class GroupActivities extends StatelessWidget {
                     ),
                   ],
                 ),
-                SingleAgenda(),
-                SingleAgenda(),
+                SingleAgenda(context),
+                SingleAgenda(context),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                     child: ElevatedButton(
@@ -131,7 +161,33 @@ class GroupActivities extends StatelessWidget {
     );
   }
 
-  Container SingleAgenda() {
+  Container ModalWidget(BuildContext context,
+      {String title = "", List<Widget> childrenWidgets = const []}) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(24, 32, 32, 16),
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Center(
+            child: Text(
+              title,
+              style: headingH6Medium500.copyWith(color: neutralBlack),
+            ),
+          ),
+          ...childrenWidgets
+        ],
+      ),
+    );
+  }
+
+  Container SingleAgenda(BuildContext context) {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
         padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
@@ -151,7 +207,40 @@ class GroupActivities extends StatelessWidget {
 
             Text("Add to agenda"),
             Spacer(),
-            Icon(Icons.more_horiz)
+            IconButton(
+              onPressed: () {
+                log("More button pressed");
+                showModalBottomSheet(
+                    context: context,
+                    builder: (builder) {
+                      return ModalWidget(
+                        context,
+                        title: "Students take turns reading...",
+                        childrenWidgets: [
+                          SizedBox(
+                            height: 32,
+                          ),
+                          Text(
+                            "Edit the activity",
+                            style: paragraphMediumRegular400,
+                          ),
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Text(
+                            "Delete the activity",
+                            style: paragraphMediumRegular400.copyWith(
+                                color: error500),
+                          ),
+                        ],
+                      );
+                    });
+              },
+              icon: Icon(
+                Icons.more_horiz,
+                color: primary500,
+              ),
+            )
           ],
         ));
   }
